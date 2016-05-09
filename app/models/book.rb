@@ -1,4 +1,4 @@
-require 'http'
+require "http"
 
 class Book < ActiveRecord::Base
 
