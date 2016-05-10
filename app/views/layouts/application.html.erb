@@ -2,13 +2,33 @@
 <html>
 <head>
   <title>OurReads</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => false %> <!-- Turbolinks on or off? -->
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => false %> <!-- Turbolinks on or off? -->
+  <%= csrf_meta_tags %> <!-- What is this for? -->
 </head>
 <body>
+  <header id="banner">
+    <h1><a href="/">Our Reads</a></h1>
+      <% if logged_in? %>
+        <ul>
+          <li><a href="/students/<%= current_user.id %>"><%= current_user.username %></a></li>
+          <li> | </li>
+          <li><a href="/session/logout">Logout</a></li>
+        </ul>
+      <% else %>
+        <ul>
+          <li><a href="/session/new">Login</a></li>
+          <li> | </li>
+          <li><a href="/students/new">Register</a></li>
+        </ul>
+      <% end %>
+  </header>
 
-<%= yield %>
+  <div id="container">
+    <%= yield %>
+  </div>
+
+  <footer id="footer"><h4>Our Reads | May 2016</h4></footer>
 
 </body>
 </html>
