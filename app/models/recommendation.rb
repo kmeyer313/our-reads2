@@ -4,6 +4,6 @@ class Recommendation < ActiveRecord::Base
   belongs_to :book
   has_many   :comments
 
-  validates :title, :content, :rating, :recommendor, :book, :presence: true
+  validates :title, :content, :rating, :recommendor, :book, presence: true
 
 end

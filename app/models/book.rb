@@ -3,7 +3,7 @@ require "http"
 class Book < ActiveRecord::Base
 
   has_many :recommendations
-  # has_many :recommendors, through: :recommendations, source: :student
+  has_many :recommendors, through: :recommendations
 
   validates :title, presence: true
 
