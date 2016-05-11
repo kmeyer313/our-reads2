@@ -1,1 +1,42 @@
-<h1>Hello world!</h1>
+
+<% if logged_in? %>
+  <h2><a href="/recommendations/new">Write a new recommendation!</a></h2>
+<% end %>
+
+<div class="home-high-rec">
+  <h1>Highly Recommended Books</h1> <!-- Should link to page that has list of all books ordered by most amount of recommendations -->
+  <!-- need to create method to sort them by most recommendations -->
+  <!-- also create a method to limit how many will be shown -->
+
+  <% @books.each do |book| %>
+      <section class="home-high-rec-each">
+        <img src="<%= book.image_url %>">
+        <h3><em><%= book.title %></em> by <%= book.author %></h3> <!-- link to book's show page -->
+        <!-- average rating? write method -->
+        <p>This book has been recommended by:
+          <ul>
+            <% book.recommendors.each do |recommendor| %>
+              <li><%= recommendor.username %> said, "Create method to return recommendation from that student for that book"</li>
+            <% end %>
+          </ul>
+        </p>
+      </section>
+    <% end %>
+</div>
+
+<br>  <!-- CSS THIS BREAK -->
+
+<div class="home-recent-rec">
+  <h1>Recent Recommendations</h1> <!-- Should link to page that has list of recommendations listed by most recent -->
+    <% @recommendations.each do |recommendation| %>
+      <section class="home-recent-rec-book">
+        <img src="<%= recommendation.book.image_url %>">
+        <h3><em><%= recommendation.book.title %></em> by <%= recommendation.book.author %></h3> <!-- link to book's show page -->
+        <p>Rating: <%= recommendation.rating %></p>
+        <h4><%= recommendation.title %></h4> <!-- link to recommendation's show page -->
+        <p><%= recommendation.content %></p>
+        <p><%= recommendation.book.summary %></p>
+        <p>Recommended by: <%= recommendation.recommendor.username %></p>
+      </section>
+    <% end %>
+</div>
