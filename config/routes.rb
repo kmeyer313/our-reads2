@@ -3,8 +3,13 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   resources :students, only: [:new, :create, :show]
-  resources :session, only: [:new, :create, :destroy]
+
+  get '/session/new' => 'session#new'
+  post '/session' => 'session#create'
+  get '/logout' => 'session#destroy'
+
   resources :books
+
   resources :recommendations do
     resources :comments
   end
