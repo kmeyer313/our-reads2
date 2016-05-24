@@ -9,19 +9,22 @@
 <body>
   <header id="banner">
     <h1><a href="/">Our Reads</a></h1>
-      <% if logged_in? %>
-        <ul>
+
+      <ul>
+        <li><%= link_to "Home", root_path %></li>
+        <li> | </li>
+        <% if logged_in? %>
+        <!-- FIX PATH FOR STUDENT SHOW PAGE -->
           <li><a href="/students/<%= current_user.id %>"><%= current_user.username %></a></li>
           <li> | </li>
-          <li><a href="/session/logout">Logout</a></li>
-        </ul>
-      <% else %>
-        <ul>
-          <li><a href="/session/new">Login</a></li>
+          <li><%= link_to "Logout", logout_path %></li>
+        <% else %>
+          <li><%= link_to "Login", session_new_path %></li>
           <li> | </li>
-          <li><a href="/students/new">Register</a></li>
-        </ul>
-      <% end %>
+          <li><%= link_to "Register", new_student_path %></li>
+        <% end %>
+      </ul>
+
   </header>
 
   <div id="container">

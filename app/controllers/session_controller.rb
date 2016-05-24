@@ -1,10 +1,13 @@
 class SessionController < ApplicationController
 
+  # def new
+  # end
+
   def create
     @student = Student.find_by(username: session_params[:username])
 
     if @student && @student.authenticate(session_params[:password])
-      session[:student_id] = @student.student_id
+      session[:student_id] = @student.id
       redirect_to root_path
     else
       flash[:notice] = "something wasn't right"
@@ -14,7 +17,7 @@ class SessionController < ApplicationController
 
   def destroy
     session.delete(:student_id)
-    redirect_to session_new
+    redirect_to root_path
   end
 
   private

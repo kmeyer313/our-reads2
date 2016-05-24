@@ -3,6 +3,26 @@
   <h2><a href="/recommendations/new">Write a new recommendation!</a></h2>
 <% end %>
 
+
+
+
+<div class="home-recent-rec">
+  <h1>Recent Recommendations</h1> <!-- Should link to page that has list of recommendations listed by most recent -->
+    <% @recommendations.each do |recommendation| %>
+      <section class="home-recent-rec-book">
+        <img src="<%= recommendation.book.image_url %>">
+        <h3><em><%= recommendation.book.title %></em> by <%= recommendation.book.author %></h3> <!-- link to book's show page -->
+        <p>Rating: <%= recommendation.rating %></p>
+        <h4><%= recommendation.title %></h4> <!-- link to recommendation's show page -->
+        <p><%= recommendation.content %></p>
+        <p><%= recommendation.book.summary %></p>
+        <p>Recommended by: <%= recommendation.recommendor.username %></p>
+      </section>
+    <% end %>
+</div>
+
+<br>  <!-- CSS THIS BREAK -->
+
 <div class="home-high-rec">
   <h1>Highly Recommended Books</h1> <!-- Should link to page that has list of all books ordered by most amount of recommendations -->
   <!-- need to create method to sort them by most recommendations -->
@@ -20,23 +40,6 @@
             <% end %>
           </ul>
         </p>
-      </section>
-    <% end %>
-</div>
-
-<br>  <!-- CSS THIS BREAK -->
-
-<div class="home-recent-rec">
-  <h1>Recent Recommendations</h1> <!-- Should link to page that has list of recommendations listed by most recent -->
-    <% @recommendations.each do |recommendation| %>
-      <section class="home-recent-rec-book">
-        <img src="<%= recommendation.book.image_url %>">
-        <h3><em><%= recommendation.book.title %></em> by <%= recommendation.book.author %></h3> <!-- link to book's show page -->
-        <p>Rating: <%= recommendation.rating %></p>
-        <h4><%= recommendation.title %></h4> <!-- link to recommendation's show page -->
-        <p><%= recommendation.content %></p>
-        <p><%= recommendation.book.summary %></p>
-        <p>Recommended by: <%= recommendation.recommendor.username %></p>
       </section>
     <% end %>
 </div>
