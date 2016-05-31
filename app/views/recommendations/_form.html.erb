@@ -1,13 +1,43 @@
-<%= form_for :recommendation, url: recommendation_path do |f| %>
-  <div class="field">
-    <%= f.label :username %><br>
-    <%= f.text_field :username %>
-  </div>
-  <div class="field">
-    <%= f.label :password %><br>
-    <%= f.password_field :password %>
-  </div>
-  <div class="actions">
-    <%= f.submit "Login" %>
+<%= form_for(@book) do |f| %>
+  <div class="book-search">
+    <div class="field">
+      <%= f.label :title, "Book Title" %><br>
+      <input type="text" name"book[title]">
+      <%= f.text_field :title %>
+    </div>
   </div>
 <% end %>
+
+<!-- AMAZON SEARCH BOX -->
+<!-- <FORM action="http://www.amazon.com/exec/obidos/external-search"&return;
+   method="get">
+  <INPUT type="hidden" name="mode" value="blended">
+  <INPUT type="hidden" name="tag" value="insert associate tag">
+  Search Amazon:<br>
+  <INPUT type="text" name="keyword" size="10" value="">
+  <INPUT TYPE="submit" VALUE="Go">
+</FORM> -->
+
+<%= form_for(@recommendation) do |f| %>
+  <div class="recommendation-new">
+    <div class="field">
+      <%= f.label :title, "Engaging Recommendation Title" %><br>
+      <%= f.text_field :title %>
+    </div>
+    <div class="field">
+      <%= f.label :content, "Your Recommendation" %><br>
+      <%= f.text_area :content %>
+    </div>
+    <div class="field">
+      <%= f.label :rating, "Your Rating" %><br>
+      <%= f.select :rating, [1, 2, 3, 4, 5] %>
+    </div>
+      <input type="hidden" name="recommendor" value="#{current_user.id}" />
+      <input type="hidden" name="book" value="#{@book.id}" />
+    <div class="actions">
+      <%= f.submit "Login" %>
+    </div>
+  </div>
+<% end %>
+
+
