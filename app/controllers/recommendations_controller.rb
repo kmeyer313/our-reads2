@@ -4,6 +4,9 @@ class RecommendationsController < ApplicationController
   end
 
   def new
+    # if Book.find_by(:title)
+    @book = Book.new
+    @recommendation = Recommendation.new
   end
 
   def create
